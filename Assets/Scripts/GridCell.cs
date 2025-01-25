@@ -8,6 +8,8 @@ public class GridCell : MonoBehaviour
     public bool isSelected = false;
     [HideInInspector]
     public bool isHovered = false;
+    [HideInInspector]
+    public bool isEmpty = true;
     Material mat;
     MeshRenderer renderer;
     Color defaultColor;
@@ -16,6 +18,7 @@ public class GridCell : MonoBehaviour
         renderer = this.transform.GetComponent<MeshRenderer>();
         mat = renderer.material;
         defaultColor = mat.color;
+        if (this.transform.childCount > 0) isEmpty = false;
     }
 
     private void OnMouseEnter()
@@ -54,12 +57,15 @@ public class GridCell : MonoBehaviour
     {
         isSelected = false;
         Debug.Log(this.transform.parent.name + " " + this.name + " MouseUP");
-        if (GridSystem.currentSelection != null && GridSystem.hoveredCell != null)
+        if (GridSystem.currentSelection != null && GridSystem.hoveredCell != null
+            && GridSystem.hoveredCell.isEmpty)
         {
+            this.isEmpty = true;
             GridSystem.currentSelection.transform.SetParent(GridSystem.hoveredCell.transform);
-            GridSystem.currentSelection.transform.localPosition = new Vector3(0, 1f, 0);
-            GridSystem.currentSelection = null;
+            GridSystem.currentSelection.transform.localPosition = new Vector3(0, 1f, 0);  
+            GridSystem.hoveredCell.isEmpty = false;
         }
+        GridSystem.currentSelection = null;
         mat.color = this.defaultColor;
         renderer.material = mat;
     }
