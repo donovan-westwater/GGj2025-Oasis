@@ -9,6 +9,8 @@ public class MenuManager : MonoBehaviour
     public GameObject mainGameUI;
     public GameObject dome;
     public Camera mainCam;
+    [HideInInspector]
+    public int lettersUnlocked = 0;
     // Start is called before the first frame update
     void Start()
     {
