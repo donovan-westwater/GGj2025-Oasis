@@ -37,9 +37,32 @@ public class GridSystem : MonoBehaviour
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
     }
+    //Clears the board. Assumes columns can only have 1 child at a time
+    void ClearBoard()
+    {
+        gridState = new int[9];
+        foreach(Transform row in this.transform)
+        {
+            foreach(Transform col in row)
+            {
+                if (col.transform.childCount > 0)
+                {
+                    GridCell cell = col.GetComponent<GridCell>();
+                    cell.isEmpty = true;
+                    cell.isSelected = false;
+                    cell.ResetColor();
+                    Destroy(col.transform.GetChild(0).gameObject);
+                }
+            
+            }
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ClearBoard();
+        }
     }
 }

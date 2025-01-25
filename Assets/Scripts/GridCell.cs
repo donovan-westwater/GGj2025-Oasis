@@ -20,7 +20,22 @@ public class GridCell : MonoBehaviour
         defaultColor = mat.color;
         if (this.transform.childCount > 0) isEmpty = false;
     }
+    public void ResetColor()
+    {
+        if (isSelected)
+        {
+            mat.color = Color.green;
+        }else if (isHovered)
+        {
+            mat.color = Color.red;
+        }
+        else
+        {
+            mat.color = defaultColor;
+        }
+        renderer.material = mat;
 
+    }
     private void OnMouseEnter()
     {
         isHovered = true;
