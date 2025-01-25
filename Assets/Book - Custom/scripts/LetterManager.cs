@@ -23,6 +23,12 @@ public class LetterManager : MonoBehaviour {
         RefreshControls();
     }
 
+    public void Exit()
+    {
+        var menuManager = GameObject.FindObjectOfType<MenuManager>();
+        menuManager.ReturnToGameFromBook();
+    }
+
     public void DecrementLetter()
     {
         Assert.IsTrue(CanDecrementLetter());
