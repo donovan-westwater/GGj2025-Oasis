@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
+    [HideInInspector]
+    public static GameObject currentSelection = null;
+    [HideInInspector]
+    public static GridCell hoveredCell = null;
     // Start is called before the first frame update
     void Start()
     {
