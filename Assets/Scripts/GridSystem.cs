@@ -21,10 +21,19 @@ public class GridSystem : MonoBehaviour
     GridStateObject[] rawObjectArray;
     MenuManager menuManagerRef;
     public GameObject[] unlocks;
+    public AudioClip submit;
+    public AudioClip clear;
+    public AudioClip achievement;
+    private AudioSource audioSource;
+    private bool isSubmitting = false;
+
     // Start is called before the first frame update
     void Start()
     {
         AssignDate();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
         counterDisplay = counterObj.GetComponent<TextMeshProUGUI>();
         dateDisplay = dateObj.GetComponent<TextMeshProUGUI>();
         rawObjectArray = Resources.LoadAll<GridStateObject>("GridStates/");
@@ -97,20 +106,32 @@ public class GridSystem : MonoBehaviour
     }
     void CheckAchievements()
     {
-        for(int i = 1; i < rawObjectArray.Length;i++)
+        bool achievementUnlocked = false;
+
+        for (int i = 1; i < rawObjectArray.Length; i++)
         {
             bool comp = CompareGridStates(rawObjectArray[i], gridState);
-            if (comp)
+            if (comp && !rawObjectArray[i].completed)
             {
                 rawObjectArray[i].completed = true;
+                achievementUnlocked = true;
             }
+        }
+
+        if (achievementUnlocked && achievement != null)
+        {
+            audioSource.PlayOneShot(achievement);
         }
     }
     public void Sumbit()
     {
+        if (isSubmitting) return;
+        isSubmitting = true;
+
         if (IsGridEmpty())
         {
             Debug.Log("Empty!");
+            isSubmitting = false;
             return;
         }
         CheckAchievements();
@@ -122,8 +143,15 @@ public class GridSystem : MonoBehaviour
 
         AssignDate();
         counterDisplay.text = submissionCount.ToString();
+
+        if (submit != null)
+        {
+            audioSource.PlayOneShot(submit);
+        }
+
         dateDisplay.text = date.ToString("MMMM d, yyy");
         ClearBoard();
+        isSubmitting = false;
 
         menuManagerRef.UnlockLetterAndLoadCustscene();
     }
@@ -152,6 +180,12 @@ public class GridSystem : MonoBehaviour
                 i++;
             }
         }
+
+        if (!isSubmitting && clear != null)
+        {
+            audioSource.PlayOneShot(clear);
+        }
+
     }
     // Update is called once per frame
     void Update()
