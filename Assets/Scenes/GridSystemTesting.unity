@@ -2055,6 +2055,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 375358528}
     - target: {fileID: 4071260361988029146, guid: 87255a2fa31b7714caf94692ebf6c3ec, type: 3}
+      propertyPath: achievement
+      value: 
+      objectReference: {fileID: 8300000, guid: 80253ef2c616c46a8b5782fd49131142, type: 3}
+    - target: {fileID: 4071260361988029146, guid: 87255a2fa31b7714caf94692ebf6c3ec, type: 3}
       propertyPath: unlocks.Array.size
       value: 4
       objectReference: {fileID: 0}

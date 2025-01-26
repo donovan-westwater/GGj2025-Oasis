@@ -23,7 +23,9 @@ public class GridSystem : MonoBehaviour
     public GameObject[] unlocks;
     public AudioClip submit;
     public AudioClip clear;
+    public AudioClip achievement;
     private AudioSource audioSource;
+    private bool isSubmitting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -77,22 +79,34 @@ public class GridSystem : MonoBehaviour
     }
     void CheckAchievements()
     {
-        for(int i = 1; i < rawObjectArray.Length;i++)
+        bool achievementUnlocked = false;
+
+        for (int i = 1; i < rawObjectArray.Length; i++)
         {
             bool comp = CompareGridStates(rawObjectArray[i], gridState);
-            if (comp)
+            if (comp && !rawObjectArray[i].completed)
             {
                 rawObjectArray[i].completed = true;
+                achievementUnlocked = true;
             }
+        }
+
+        if (achievementUnlocked && achievement != null)
+        {
+            audioSource.PlayOneShot(achievement);
         }
     }
     public void Sumbit()
     {
+        if (isSubmitting) return;
+        isSubmitting = true;
+
         ReadBoardState();
         //Empty board state is always 0 index
         if (CompareGridStates(rawObjectArray[0], gridState))
         {
             Debug.Log("Empty!");
+            isSubmitting = false;
             return;
         }
         CheckAchievements();
@@ -113,6 +127,7 @@ public class GridSystem : MonoBehaviour
         }
 
         ClearBoard();
+        isSubmitting = false;
     }
     public void Quit()
     {
@@ -140,10 +155,11 @@ public class GridSystem : MonoBehaviour
             }
         }
 
-        if (clear != null)
+        if (!isSubmitting && clear != null)
         {
             audioSource.PlayOneShot(clear);
         }
+
     }
     // Update is called once per frame
     void Update()
