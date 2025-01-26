@@ -80,6 +80,7 @@ public class GridCell : MonoBehaviour
             GridSystem.currentSelection.transform.localPosition = new Vector3(0, 1f, 0);  
             GridSystem.hoveredCell.isEmpty = false;
         }
+        if(GridSystem.currentSelection !=null) GridSystem.currentSelection.transform.localPosition = new Vector3(0, 1f, 0);
         GridSystem.currentSelection = null;
         mat.color = this.defaultColor;
         renderer.material = mat;

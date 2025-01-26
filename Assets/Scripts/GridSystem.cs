@@ -133,5 +133,20 @@ public class GridSystem : MonoBehaviour
         {
             ClearBoard();
         }
+        if(currentSelection != null)
+        {
+            if(hoveredCell != null) { 
+                Vector3 curPos = currentSelection.transform.position;
+                currentSelection.transform.position = new Vector3(curPos.x, 1.5f, curPos.z);
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                currentSelection.transform.Rotate(new Vector3(0, 90f, 0),Space.Self);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                currentSelection.transform.Rotate(new Vector3(0, 90f, 0), Space.Self);
+            }
+        }
     }
 }
