@@ -1629,7 +1629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1053787097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2154,6 +2154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573364191}
   - component: {fileID: 1573364192}
+  - component: {fileID: 1573364193}
   m_Layer: 5
   m_Name: LetterManager
   m_TagString: Untagged
@@ -2209,6 +2210,103 @@ MonoBehaviour:
   ButtonExit: {fileID: 1053787098}
   StartPage: 0
   ForceCutsceneMode: 0
+  flip: {fileID: 8300000, guid: 8eccdaee52c4a4a43bc1c2639912617c, type: 3}
+--- !u!82 &1573364193
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573364190}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1787520993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,10 +2419,17 @@ MonoBehaviour:
     but I have never fully left my own reality.  The letters are interesting, and
     they give me things to think about, but so far I haven\u2019t been brought to
     a new world.  I wasn\u2019t able to explain why this was the case until I read
-    your newest letter.  \r\n\r\nYou are a haunted man.  The loss of the world you
-    loved has left a hole in your life, and you have tried to fill it with your memories,
-    as if that can fully restore the old world.  Memories are just the stories we
-    build from our past, often imperfectly.  When you \r\n"
+    your newest letter.  \r\n\r\nYou write about beauty in the past tense.  It is
+    an object that once was and shall never never be again.  I don\u2019t doubt that
+    the old world was a beautiful place, but I let that blind me to the world I do
+    have.  The story of your trip through the forest in the desert moved me because
+    it exists now.  Perhaps beauty isn\u2019t some innate quality that the world
+    does or doesn\u2019t have, but is something we build for ourselves as we live
+    our lives.  I\u2019ve only ever known this world, but I can still see the beauty
+    in it.  It\u2019s in the way dust dances for me in the wind, or the brilliance
+    of the night sky, or in the communities I share.  I can\u2019t ask you to ignore
+    the beauty you built early in your life, but don\u2019t allow your past to rob
+    you of your present.  \r\n\r\nSincerely, \r\nSophie"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10d48b7afdacd5a4f950b5d7926d6425, type: 2}
   m_sharedMaterial: {fileID: 2469891590936762073, guid: 10d48b7afdacd5a4f950b5d7926d6425, type: 2}
@@ -2808,7 +2913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1931844808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2996,7 +3101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1942449287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2023777104
 RectTransform:
   m_ObjectHideFlags: 0

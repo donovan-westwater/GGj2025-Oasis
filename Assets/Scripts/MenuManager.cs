@@ -14,25 +14,38 @@ public class MenuManager : MonoBehaviour
     public int lettersUnlocked = 0;
     public GameObject hideButton;
     public GameObject expandButton;
+    public AudioClip click;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
+    private void PlayClickSound()
+    {
+        if (click != null)
+        {
+            audioSource.PlayOneShot(click);
+        }
     }
     public void HidePanel()
     {
+        PlayClickSound();
         hideButton.SetActive(false);
         expandButton.SetActive(true);
         pieceMenu.transform.position -= new Vector3(100,0,0);
     }
     public void ExpandPanel()
     {
+        PlayClickSound();
         hideButton.SetActive(true);
         expandButton.SetActive(false);
         pieceMenu.transform.position += new Vector3(100, 0, 0);
     }
     public void ReturnToGameFromBook()
     {
+        PlayClickSound();
         mainGameUI.SetActive(true);
         dome.SetActive(true);
         memoryMenu.SetActive(false);
@@ -45,6 +58,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenMemoryMenu()
     {
+        PlayClickSound();
         foreach (Transform u in mainGameUI.transform)
         {
             u.gameObject.SetActive(false);
@@ -58,6 +72,7 @@ public class MenuManager : MonoBehaviour
     }
     public void CloseMemoryMenu()
     {
+        PlayClickSound();
         foreach (Transform u in mainGameUI.transform)
         {
             u.gameObject.SetActive(true);
@@ -71,6 +86,7 @@ public class MenuManager : MonoBehaviour
     }
     public void LoadBookMenu()
     {
+        PlayClickSound();
         mainGameUI.SetActive(false);
         dome.SetActive(false);
         memoryMenu.SetActive(false);

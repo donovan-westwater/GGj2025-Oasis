@@ -5300,6 +5300,7 @@ MonoBehaviour:
   lettersUnlocked: 0
   hideButton: {fileID: 2018071796}
   expandButton: {fileID: 1030553215}
+  click: {fileID: 8300000, guid: e3c0ac91ea2f64f3e80a3029bf9630b6, type: 3}
 --- !u!1 &1391916891
 GameObject:
   m_ObjectHideFlags: 0
