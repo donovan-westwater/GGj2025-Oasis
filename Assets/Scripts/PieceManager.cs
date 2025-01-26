@@ -18,6 +18,7 @@ public class PieceManager : MonoBehaviour
         if (index >= piecePrefabs.Length 
             || GridSystem.hoveredCell == null
             || !GridSystem.hoveredCell.isEmpty) return;
+        GridSystem.hoveredCell.isEmpty = false;
         GridSystem.currentSelection = GameObject.Instantiate(piecePrefabs[index], new Vector3(0, 1, 0)
             , Quaternion.identity);
         GridSystem.currentSelection.transform.SetParent(GridSystem.hoveredCell.transform);
