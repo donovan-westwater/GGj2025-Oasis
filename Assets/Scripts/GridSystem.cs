@@ -18,12 +18,16 @@ public class GridSystem : MonoBehaviour
     public static GameObject currentSelection = null;
     [HideInInspector]
     public static GridCell hoveredCell = null;
+    GridStateObject[] rawObjectArray;
     // Start is called before the first frame update
     void Start()
     {
         date = System.DateTime.Now;
         counterDisplay = counterObj.GetComponent<TextMeshProUGUI>();
         dateDisplay = dateObj.GetComponent<TextMeshProUGUI>();
+        rawObjectArray = Resources.LoadAll<GridStateObject>("GridStates/");
+        counterDisplay.text = submissionCount.ToString();
+        dateDisplay.text = date.ToString("MM/dd/yyy");
     }
     //Go over each cell and write down what pieace in the cell [PLACEHOLDER]
     void ReadBoardState()
@@ -36,7 +40,7 @@ public class GridSystem : MonoBehaviour
             {
                 if (col.transform.childCount > 0)
                 {
-                    PieceID pID = col.GetComponent<PieceID>();
+                    PieceID pID = col.transform.GetChild(0).GetComponent<PieceID>();
                     gridState[i] = pID.typeID;
                 }
                 else
@@ -47,18 +51,25 @@ public class GridSystem : MonoBehaviour
             }
         }
     }
-    bool CompareGridStates(int[] a, int[] b)
+    bool CompareGridStates(GridStateObject a, int[] b)
     {
-        if (a.Length < 1 || a.Length > 9) return false;
+        if (a.gridState.Length < 1 || a.gridState.Length > 9) return false;
         if (b.Length < 1 || b.Length > 9) return false;
         for(int i = 0;i < 9; i++)
         {
-            if (a[i] != b[i]) return false;
+            if (a.gridState[i] != b[i]) return false;
         }
         return true;
     }
     public void Sumbit()
     {
+        ReadBoardState();
+        //Empty board state is always 0 index
+        if (CompareGridStates(rawObjectArray[0], gridState))
+        {
+            Debug.Log("Empty!");
+            return;
+        }
         submissionCount++;
         date = date.AddDays(7.0);
         counterDisplay.text = submissionCount.ToString();
