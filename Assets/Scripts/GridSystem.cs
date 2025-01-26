@@ -92,7 +92,7 @@ public class GridSystem : MonoBehaviour
         submissionCount++;
         if(menuManagerRef.lettersUnlocked < unlocks.Length)
         {
-            unlocks[menuManagerRef.lettersUnlocked].SetActive(true);
+            unlocks[menuManagerRef.lettersUnlocked-1].SetActive(true);
         }
 
         date = date.AddDays(7.0);
