@@ -21,11 +21,14 @@ public class LetterManager : MonoBehaviour {
 
     void Start()
     {
+        foreach (var letter in Letters)
+            letter.Deactivate();
+
         _iLetterActive = -1;
         var menuManager = GameObject.FindObjectOfType<MenuManager>();
         MaxLetterUnlockedIndex = (menuManager != null) ?
                                     menuManager.lettersUnlocked :
-                                    1;
+                                    2;
 
         SetCurrentLetter(MaxLetterUnlockedIndex - 1);
     }
