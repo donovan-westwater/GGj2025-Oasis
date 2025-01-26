@@ -19,11 +19,13 @@ public class LetterManager : MonoBehaviour {
     public Button ButtonExit;
 
     [Header("Debug options")]
+    public int StartPage;
     public bool ForceCutsceneMode;
 
     private int _iLetterActive;
     private int MaxLetterUnlockedIndex;
 
+    private bool _allowIncrementPage;
     private bool _isCutsceneActive;
 
     void Awake()
@@ -37,13 +39,25 @@ public class LetterManager : MonoBehaviour {
                                     menuManager.lettersUnlocked :
                                     6;
 
-        SetCurrentLetter(MaxLetterUnlockedIndex - 1);
+        var startPage = (StartPage > 0) ? StartPage - 1 : MaxLetterUnlockedIndex - 1;
+        SetCurrentLetter(startPage);
 
         bool isCutscene = false; // TODO (bobbyz) Menu manager should provide this
         if (isCutscene || ForceCutsceneMode)
         {
             SetCutsceneActive(true);
         }
+    }
+
+    public bool IsIncrementPageDisabled()
+    {
+        return !_allowIncrementPage;
+    }
+
+    public void EnableIncrementPage()
+    {
+        _allowIncrementPage = true;
+        RefreshControls();
     }
 
     public bool IsCutsceneActive()
@@ -76,6 +90,11 @@ public class LetterManager : MonoBehaviour {
 
     public void IncrementPage ()
     {
+        if (_isCutsceneActive)
+        {
+            _allowIncrementPage = false;
+        }
+
         Letters[_iLetterActive].IncrementPage();
         RefreshControls();
     }
@@ -123,8 +142,8 @@ public class LetterManager : MonoBehaviour {
     {
         ButtonLetterNext.gameObject.SetActive(CanIncrementLetter() && !_isCutsceneActive);
         ButtonLetterPrev.gameObject.SetActive(CanDecrementLetter() && !_isCutsceneActive);
-        ButtonPageNext.gameObject.SetActive(Letters[_iLetterActive].CanIncrementPage());
-        ButtonPagePrev.gameObject.SetActive(Letters[_iLetterActive].CanDecrementPage());
+        ButtonPageNext.gameObject.SetActive(Letters[_iLetterActive].CanIncrementPage() && _allowIncrementPage);
+        ButtonPagePrev.gameObject.SetActive(Letters[_iLetterActive].CanDecrementPage() && !_isCutsceneActive);
         ButtonExit.gameObject.SetActive(!_isCutsceneActive);
     }
 }

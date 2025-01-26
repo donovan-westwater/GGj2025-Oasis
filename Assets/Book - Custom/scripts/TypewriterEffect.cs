@@ -112,6 +112,12 @@ public class TypewriterEffect : MonoBehaviour
         {
             var lastCharacterIndex = textInfo.characterCount - 1;
 
+            // NOTE (bobbyz) This is probably bad practice but I don't really understand how unity
+            //  actions work nor do I like the idea of piping invocations through multiple layers
+            //  so just doing this 
+
+            var letterManager = GameObject.FindObjectOfType<LetterManager>();
+
             if (_currentVisibleCharacterIndex >= lastCharacterIndex)
             {
                 _textBox.maxVisibleCharacters++;
@@ -119,14 +125,15 @@ public class TypewriterEffect : MonoBehaviour
                 CompleteTextRevealed?.Invoke();
                 _readyForNewText = true;
 
-                // NOTE (bobbyz) This is probably bad practice but I don't really understand how unity
-                //  actions work nor do I like the idea of piping invocations through multiple layers
-                //  so just doing this 
-
-                var letterManager = GameObject.FindObjectOfType<LetterManager>();
                 letterManager.CompleteCutscene();
 
                 yield break;
+            }
+
+            if (!letterManager.IsIncrementPageDisabled())
+            {
+                yield return _skipDelay;    // TODO (bobbyz) Too lazy to do a different delay
+                continue;
             }
 
             char character = textInfo.characterInfo[_currentVisibleCharacterIndex].character;
