@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: X Marks The Spot
   m_EditorClassIdentifier: 
   gridState: 00000000ffffffff00000000ffffffff00000000ffffffff00000000ffffffff00000000
-  title: 
+  title: X marks the spot
   completed: 0
   icon: {fileID: 0}
