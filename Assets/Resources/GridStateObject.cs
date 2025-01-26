@@ -8,4 +8,8 @@ public class GridStateObject : ScriptableObject
 {
     [SerializeField]
     public int[] gridState = new int[9];
+    [SerializeField]
+    public string title = "";
+    [SerializeField]
+    public bool completed = false;
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public GameObject pieceMenu;
+    public GameObject memoryMenu;
     public GameObject mainGameUI;
     public GameObject dome;
     public Camera mainCam;
@@ -18,6 +19,7 @@ public class MenuManager : MonoBehaviour
     {
         mainGameUI.SetActive(true);
         dome.SetActive(true);
+        memoryMenu.SetActive(false);
         foreach (Transform c in this.transform)
         {
             c.gameObject.SetActive(true);
@@ -25,11 +27,38 @@ public class MenuManager : MonoBehaviour
         mainCam.transform.gameObject.SetActive(true);
         SceneManager.UnloadSceneAsync(1);
     }
+    public void OpenMemoryMenu()
+    {
+        foreach (Transform u in mainGameUI.transform)
+        {
+            u.gameObject.SetActive(false);
+        }
+        dome.SetActive(false);
+        memoryMenu.SetActive(true);
+        foreach (Transform c in this.transform)
+        {
+            c.gameObject.SetActive(false);
+        }
+    }
+    public void CloseMemoryMenu()
+    {
+        foreach (Transform u in mainGameUI.transform)
+        {
+            u.gameObject.SetActive(true);
+        }
+        dome.SetActive(true);
+        memoryMenu.SetActive(false);
+        foreach (Transform c in this.transform)
+        {
+            c.gameObject.SetActive(true);
+        }
+    }
     public void LoadBookMenu()
     {
         mainGameUI.SetActive(false);
         dome.SetActive(false);
-        foreach(Transform c in this.transform)
+        memoryMenu.SetActive(false);
+        foreach (Transform c in this.transform)
         {
             c.gameObject.SetActive(false);
         }
