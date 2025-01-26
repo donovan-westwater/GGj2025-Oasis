@@ -130,11 +130,13 @@ public class TypewriterEffect : MonoBehaviour
                 yield break;
             }
 
-            if (!letterManager.IsIncrementPageDisabled())
-            {
-                yield return _skipDelay;    // TODO (bobbyz) Too lazy to do a different delay
-                continue;
-            }
+            // Wait for player to hit increment page
+
+            //if (!letterManager.IsIncrementPageDisabled())
+            //{
+            //    yield return _skipDelay;    // TODO (bobbyz) Too lazy to do a different delay
+            //    continue;
+            //}
 
             char character = textInfo.characterInfo[_currentVisibleCharacterIndex].character;
 

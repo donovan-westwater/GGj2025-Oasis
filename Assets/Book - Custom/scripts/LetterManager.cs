@@ -18,6 +18,8 @@ public class LetterManager : MonoBehaviour {
 
     public Button ButtonExit;
 
+    public FadeScreen FadeScreen;
+
     [Header("Debug options")]
     public int StartPage;
     public bool ForceCutsceneMode;
@@ -42,10 +44,16 @@ public class LetterManager : MonoBehaviour {
         var startPage = (StartPage > 0) ? StartPage - 1 : MaxLetterUnlockedIndex - 1;
         SetCurrentLetter(startPage);
 
-        bool isCutscene = false; // TODO (bobbyz) Menu manager should provide this
+        bool isCutscene = (menuManager != null) ? menuManager.IsRunningCutscene : false;
         if (isCutscene || ForceCutsceneMode)
         {
             SetCutsceneActive(true);
+            FadeScreen.SnapToOpaque();
+            FadeScreen.FadeToTransparent(1.0f);
+        }
+        else
+        {
+            FadeScreen.SnapToTransparent();
         }
     }
 

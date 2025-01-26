@@ -182,15 +182,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "February 24, 2075\r\n\r\nMy Dearest Sophie,\r\n\r\nA few nights ago, as
-    I was wiping the dust off my solar panels, I saw a firefly.  Or at least, I\u2019m
-    pretty sure that\u2019s what happened.  When I explained the rhythmically pulsating
-    glow that I saw, my friends laughed heartily at my \u2018joke\u2019, before realizing
-    that I was entirely serious. They tell me that my eyesight is finally going or
-    that I had merely gotten all worked up over some forgotten bit of machinery. 
-    Marcy, ever the superstitious type, explained to me that I had seen a ghost of
-    the old world!  I can\u2019t entirely blame them for their preposterous suggestions. 
-    If I was in their position, perhaps it would be easier for me to believe in elaborately
+  m_text: "My Dearest Sophie,\r\n\r\nA few nights ago, as I was wiping the dust off
+    my solar panels, I saw a firefly.  Or at least, I\u2019m pretty sure that\u2019s
+    what happened.  When I explained the rhythmically pulsating glow that I saw,
+    my friends laughed heartily at my \u2018joke\u2019, before realizing that I was
+    entirely serious. They tell me that my eyesight is finally going or that I had
+    merely gotten all worked up over some forgotten bit of machinery.  Marcy, ever
+    the superstitious type, explained to me that I had seen a ghost of the old world! 
+    I can\u2019t entirely blame them for their preposterous suggestions.  If I was
+    in their position, perhaps it would be easier for me to believe in elaborately
     woven ghost stories than in the fact that fireflies somehow still existed.  \r\n\r\nRegardless,
     ever since I\u2019ve been thinking back on my youth.  It has been so long since
     I\u2019ve let myself think about these things.  At some point I convinced myself
@@ -1560,7 +1560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &809094852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,7 +1629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1053787097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1950,6 +1950,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148571863}
   m_CullTransparentMesh: 0
+--- !u!1 &1160869827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160869828}
+  - component: {fileID: 1160869830}
+  - component: {fileID: 1160869831}
+  - component: {fileID: 1160869829}
+  m_Layer: 5
+  m_Name: FadeScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1160869828
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160869827}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573364191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1919.947, y: 926.5615}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1160869829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160869827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1160869830
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160869827}
+  m_CullTransparentMesh: 1
+--- !u!114 &1160869831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160869827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba036c96834cb0499b6d03c37a3770c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278963087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,6 +2264,7 @@ RectTransform:
   - {fileID: 1082399085}
   - {fileID: 484451609}
   - {fileID: 1787520994}
+  - {fileID: 1160869828}
   m_Father: {fileID: 1504805619}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2190,7 +2279,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573364190}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aec81b87bef1b5648afbf71b52f3975f, type: 3}
   m_Name: 
@@ -2207,6 +2296,7 @@ MonoBehaviour:
   ButtonPageNext: {fileID: 382607925}
   ButtonPagePrev: {fileID: 1148571865}
   ButtonExit: {fileID: 1053787098}
+  FadeScreen: {fileID: 1160869831}
   StartPage: 0
   ForceCutsceneMode: 0
 --- !u!1 &1787520993
@@ -2321,10 +2411,17 @@ MonoBehaviour:
     but I have never fully left my own reality.  The letters are interesting, and
     they give me things to think about, but so far I haven\u2019t been brought to
     a new world.  I wasn\u2019t able to explain why this was the case until I read
-    your newest letter.  \r\n\r\nYou are a haunted man.  The loss of the world you
-    loved has left a hole in your life, and you have tried to fill it with your memories,
-    as if that can fully restore the old world.  Memories are just the stories we
-    build from our past, often imperfectly.  When you \r\n"
+    your newest letter.  \r\n\r\nYou write about beauty in the past tense.  It is
+    an object that once was and shall never never be again.  I don\u2019t doubt that
+    the old world was a beautiful place, but I let that blind me to the world I do
+    have.  The story of your trip through the forest in the desert moved me because
+    it exists now.  Perhaps beauty isn\u2019t some innate quality that the world
+    does or doesn\u2019t have, but is something we build for ourselves as we live
+    our lives.  I\u2019ve only ever known this world, but I can still see the beauty
+    in it.  It\u2019s in the way dust dances for me in the wind, or the brilliance
+    of the night sky, or in the communities I share.  I can\u2019t ask you to ignore
+    the beauty you built early in your life, but don\u2019t allow your past to rob
+    you of your present.  \r\n\r\nSincerely, \r\nSophie"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10d48b7afdacd5a4f950b5d7926d6425, type: 2}
   m_sharedMaterial: {fileID: 2469891590936762073, guid: 10d48b7afdacd5a4f950b5d7926d6425, type: 2}
@@ -2808,7 +2905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1931844808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2996,7 +3093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1942449287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3184,7 +3281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2023777104
 RectTransform:
   m_ObjectHideFlags: 0

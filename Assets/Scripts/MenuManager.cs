@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
@@ -10,15 +9,22 @@ public class MenuManager : MonoBehaviour
     public GameObject mainGameUI;
     public GameObject dome;
     public Camera mainCam;
-    [HideInInspector]
-    public int lettersUnlocked = 0;
     public GameObject hideButton;
     public GameObject expandButton;
+
+    [HideInInspector]
+    public int lettersUnlocked { get; private set; }
+
+    [HideInInspector]
+    public bool IsRunningCutscene { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        lettersUnlocked = 0;
+        UnlockLetterAndLoadCustscene();
     }
+
     public void HidePanel()
     {
         hideButton.SetActive(false);
@@ -31,18 +37,7 @@ public class MenuManager : MonoBehaviour
         expandButton.SetActive(false);
         pieceMenu.transform.position += new Vector3(100, 0, 0);
     }
-    public void ReturnToGameFromBook()
-    {
-        mainGameUI.SetActive(true);
-        dome.SetActive(true);
-        memoryMenu.SetActive(false);
-        foreach (Transform c in this.transform)
-        {
-            c.gameObject.SetActive(true);
-        }
-        mainCam.transform.gameObject.SetActive(true);
-        SceneManager.UnloadSceneAsync(1);
-    }
+
     public void OpenMemoryMenu()
     {
         foreach (Transform u in mainGameUI.transform)
@@ -81,6 +76,36 @@ public class MenuManager : MonoBehaviour
         mainCam.transform.gameObject.SetActive(false);
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
+
+    public void UnlockLetterAndLoadCustscene()
+    {
+        lettersUnlocked++;
+        IsRunningCutscene = true;
+        mainGameUI.SetActive(false);
+        dome.SetActive(false);
+        memoryMenu.SetActive(false);
+        foreach (Transform c in this.transform)
+        {
+            c.gameObject.SetActive(false);
+        }
+        mainCam.transform.gameObject.SetActive(false);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+    }
+
+    public void ReturnToGameFromBook()
+    {
+        IsRunningCutscene = false;
+        mainGameUI.SetActive(true);
+        dome.SetActive(true);
+        memoryMenu.SetActive(false);
+        foreach (Transform c in this.transform)
+        {
+            c.gameObject.SetActive(true);
+        }
+        mainCam.transform.gameObject.SetActive(true);
+        SceneManager.UnloadSceneAsync(1);
+    }
+
     // Update is called once per frame
     void Update()
     {

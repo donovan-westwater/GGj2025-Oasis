@@ -94,11 +94,13 @@ public class GridSystem : MonoBehaviour
         {
             unlocks[menuManagerRef.lettersUnlocked].SetActive(true);
         }
-        menuManagerRef.lettersUnlocked++;
+
         date = date.AddDays(7.0);
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
         ClearBoard();
+
+        menuManagerRef.UnlockLetterAndLoadCustscene();
     }
     public void Quit()
     {
