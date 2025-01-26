@@ -19,6 +19,8 @@ public class GridSystem : MonoBehaviour
     [HideInInspector]
     public static GridCell hoveredCell = null;
     GridStateObject[] rawObjectArray;
+    MenuManager menuManagerRef;
+    public GameObject[] unlocks;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class GridSystem : MonoBehaviour
         }
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
+        menuManagerRef = this.gameObject.GetComponent<MenuManager>();
     }
     //Go over each cell and write down what pieace in the cell [PLACEHOLDER]
     void ReadBoardState()
@@ -87,6 +90,11 @@ public class GridSystem : MonoBehaviour
         }
         CheckAchievements();
         submissionCount++;
+        if(menuManagerRef.lettersUnlocked < unlocks.Length)
+        {
+            unlocks[menuManagerRef.lettersUnlocked].SetActive(true);
+        }
+        menuManagerRef.lettersUnlocked++;
         date = date.AddDays(7.0);
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
