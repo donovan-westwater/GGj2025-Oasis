@@ -28,7 +28,7 @@ public class LetterManager : MonoBehaviour {
         var menuManager = GameObject.FindObjectOfType<MenuManager>();
         MaxLetterUnlockedIndex = (menuManager != null) ?
                                     menuManager.lettersUnlocked :
-                                    2;
+                                    6;
 
         SetCurrentLetter(MaxLetterUnlockedIndex - 1);
     }
