@@ -68,10 +68,26 @@ public class TypewriterEffect : MonoBehaviour
     #region Skipfunctionality
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             if (_textBox.maxVisibleCharacters != _textBox.textInfo.characterCount - 1)
-                Skip();
+            {
+                StopCoroutine(_typewriterCoroutine);
+                _textBox.maxVisibleCharacters = _textBox.textInfo.characterCount;
+                _readyForNewText = true;
+                CompleteTextRevealed?.Invoke();
+
+                var letterManager = GameObject.FindObjectOfType<LetterManager>();
+                letterManager.CompleteCutscene();
+            }
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            if (_textBox.maxVisibleCharacters != _textBox.textInfo.characterCount - 1)
+            {
+                CurrentlySkipping = true;
+                StartCoroutine(SkipSpeedupReset());
+            }
         }
     }
 
@@ -158,28 +174,9 @@ public class TypewriterEffect : MonoBehaviour
         }
     }
 
-    private void Skip(bool quickSkipNeeded = false)
-    {
-        if (CurrentlySkipping)
-            return;
-
-        CurrentlySkipping = true;
-
-        if (!quickSkip || !quickSkipNeeded)
-        {
-            StartCoroutine(SkipSpeedupReset());
-            return;
-        }
-
-        StopCoroutine(_typewriterCoroutine);
-        _textBox.maxVisibleCharacters = _textBox.textInfo.characterCount;
-        _readyForNewText = true;
-        CompleteTextRevealed?.Invoke();
-    }
-
     private IEnumerator SkipSpeedupReset()
     {
-        yield return new WaitUntil(() => _textBox.maxVisibleCharacters == _textBox.textInfo.characterCount - 1);
+        yield return new WaitUntil(() => _textBox.maxVisibleCharacters == _textBox.textInfo.characterCount - 1 || !Input.GetMouseButton(1));
         CurrentlySkipping = false;
     }
 }
