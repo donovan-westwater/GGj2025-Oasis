@@ -24,7 +24,7 @@ public class GridSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        date = System.DateTime.Now;
+        AssignDate();
         counterDisplay = counterObj.GetComponent<TextMeshProUGUI>();
         dateDisplay = dateObj.GetComponent<TextMeshProUGUI>();
         rawObjectArray = Resources.LoadAll<GridStateObject>("GridStates/");
@@ -35,6 +35,27 @@ public class GridSystem : MonoBehaviour
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
         menuManagerRef = this.gameObject.GetComponent<MenuManager>();
+    }
+    void AssignDate()
+    {
+        int f = submissionCount;
+        switch (f) { 
+            case 0:
+                date = new System.DateTime(2075, 1, 24);
+                break;
+            case 1:
+                date = new System.DateTime(2075, 4, 9);
+                break;
+            case 2:
+                date = new System.DateTime(2075, 7, 13);
+                break;
+            case 3:
+                date = new System.DateTime(2075, 10, 31);
+                break;
+            case 4:
+                date = new System.DateTime(2075, 12, 18);
+                break;
+        }
     }
     //Go over each cell and write down what pieace in the cell [PLACEHOLDER]
     void ReadBoardState()
@@ -90,9 +111,9 @@ public class GridSystem : MonoBehaviour
         }
         CheckAchievements();
         submissionCount++;
-        if(menuManagerRef.lettersUnlocked < unlocks.Length)
+        if(submissionCount-1 < unlocks.Length)
         {
-            unlocks[menuManagerRef.lettersUnlocked-1].SetActive(true);
+            unlocks[submissionCount-1].SetActive(true);
         }
 
         date = date.AddDays(7.0);
