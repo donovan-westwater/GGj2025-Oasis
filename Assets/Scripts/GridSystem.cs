@@ -93,7 +93,7 @@ public class GridSystem : MonoBehaviour
         ClearBoard();
     }
     //Clears the board. Assumes columns can only have 1 child at a time
-    void ClearBoard()
+    public void ClearBoard()
     {
         gridState = new int[9];
         int i = 0;
