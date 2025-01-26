@@ -100,6 +100,10 @@ public class GridSystem : MonoBehaviour
         dateDisplay.text = date.ToString("MM/dd/yyy");
         ClearBoard();
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
     //Clears the board. Assumes columns can only have 1 child at a time
     public void ClearBoard()
     {
