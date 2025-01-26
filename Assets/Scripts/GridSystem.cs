@@ -61,6 +61,17 @@ public class GridSystem : MonoBehaviour
         }
         return true;
     }
+    void CheckAchievements()
+    {
+        for(int i = 1; i < rawObjectArray.Length;i++)
+        {
+            bool comp = CompareGridStates(rawObjectArray[i], gridState);
+            if (comp)
+            {
+                rawObjectArray[i].completed = true;
+            }
+        }
+    }
     public void Sumbit()
     {
         ReadBoardState();
@@ -70,6 +81,7 @@ public class GridSystem : MonoBehaviour
             Debug.Log("Empty!");
             return;
         }
+        CheckAchievements();
         submissionCount++;
         date = date.AddDays(7.0);
         counterDisplay.text = submissionCount.ToString();

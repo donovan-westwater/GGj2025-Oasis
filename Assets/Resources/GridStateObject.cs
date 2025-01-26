@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "GridState/Create GridStateObject")]
 public class GridStateObject : ScriptableObject
@@ -12,4 +12,6 @@ public class GridStateObject : ScriptableObject
     public string title = "";
     [SerializeField]
     public bool completed = false;
+    [SerializeField]
+    public Sprite icon;
 }
