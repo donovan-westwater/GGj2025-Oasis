@@ -3,57 +3,49 @@ using TMPro;
 using UnityEngine.Assertions;
 
 [ExecuteInEditMode]
+[RequireComponent(typeof(TextMeshPro))]
 public class Letter : MonoBehaviour {
-    public GameObject[] Pages;
-    public int CurrentPageIndex = 0;
-    public bool IsLocked = true;
-
-    void Start()
-    {
-    }
+    public int PageCount;
+    public TextMeshProUGUI TextMesh;
 
     public void Activate()
     {
         this.gameObject.SetActive(true);
-        SetCurrentPage(0);
+        SetCurrentPage(1);
     }
 
     public void Deactivate()
     {
-        SetCurrentPage(0);
+        SetCurrentPage(1);
         this.gameObject.SetActive(false);
     }
 
     public bool CanDecrementPage()
     {
-        return CurrentPageIndex > 0;
+        return TextMesh.pageToDisplay > 1;
     }
 
     public bool CanIncrementPage()
     {
-        return CurrentPageIndex < Pages.Length - 1;
+        return TextMesh.pageToDisplay < PageCount;
     }
 
     public void DecrementPage()
     {
         Assert.IsTrue(CanDecrementPage());
-        SetCurrentPage(CurrentPageIndex - 1);
+        SetCurrentPage(TextMesh.pageToDisplay - 1);
     }
 
     public void IncrementPage()
     {
         Assert.IsTrue(CanIncrementPage());
-        SetCurrentPage(CurrentPageIndex + 1);
+        SetCurrentPage(TextMesh.pageToDisplay + 1);
     }
 
     private void SetCurrentPage(int iPage)
     {
-        if (CurrentPageIndex == iPage) return;
+        if (TextMesh.pageToDisplay == iPage) return;
 
-        Pages[CurrentPageIndex].gameObject.SetActive(false);
-
-        CurrentPageIndex = iPage;
-
-        Pages[CurrentPageIndex].gameObject.SetActive(true);
+        TextMesh.pageToDisplay = iPage;
     }
 }

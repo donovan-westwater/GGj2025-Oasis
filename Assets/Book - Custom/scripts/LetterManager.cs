@@ -9,8 +9,6 @@ using UnityEngine.Assertions;
 [ExecuteInEditMode]
 public class LetterManager : MonoBehaviour {
     public Letter[] Letters;
-    
-    public int CurrentLetterIndex = 0;
 
     public Button ButtonLetterNext;
     public Button ButtonLetterPrev;
@@ -18,9 +16,18 @@ public class LetterManager : MonoBehaviour {
     public Button ButtonPageNext;
     public Button ButtonPagePrev;
 
+    private int _iLetterActive;
+    private int MaxLetterUnlockedIndex;
+
     void Start()
     {
-        RefreshControls();
+        _iLetterActive = -1;
+        var menuManager = GameObject.FindObjectOfType<MenuManager>();
+        MaxLetterUnlockedIndex = (menuManager != null) ?
+                                    menuManager.lettersUnlocked :
+                                    1;
+
+        SetCurrentLetter(MaxLetterUnlockedIndex - 1);
     }
 
     public void Exit()
@@ -32,45 +39,47 @@ public class LetterManager : MonoBehaviour {
     public void DecrementLetter()
     {
         Assert.IsTrue(CanDecrementLetter());
-        SetCurrentLetter(CurrentLetterIndex - 1);
+        SetCurrentLetter(_iLetterActive - 1);
     }
 
     public void IncrementLetter ()
     {
         Assert.IsTrue(CanIncrementLetter());
-        SetCurrentLetter(CurrentLetterIndex + 1);
+        SetCurrentLetter(_iLetterActive + 1);
     }
 
     public void IncrementPage ()
     {
-        Letters[CurrentLetterIndex].IncrementPage();
+        Letters[_iLetterActive].IncrementPage();
         RefreshControls();
     }
 
     public void DecrementPage ()
     {
-        Letters[CurrentLetterIndex].DecrementPage();
+        Letters[_iLetterActive].DecrementPage();
         RefreshControls();
     }
     private bool CanDecrementLetter()
     {
-        return CurrentLetterIndex > 0;
+        return _iLetterActive > 0;
     }
 
     private bool CanIncrementLetter()
     {
-        return CurrentLetterIndex < Letters.Length - 1;
+        return _iLetterActive < System.Math.Min(MaxLetterUnlockedIndex, Letters.Length) - 1;
     }
 
     private void SetCurrentLetter(int iLetter)
     {
-        if (CurrentLetterIndex == iLetter) return;
+        if (_iLetterActive == iLetter) return;
 
-        Letters[CurrentLetterIndex].Deactivate();
+        if (_iLetterActive >= 0 &&  _iLetterActive < Letters.Length)
+            Letters[_iLetterActive].Deactivate();
 
-        CurrentLetterIndex = iLetter;
+        _iLetterActive = iLetter;
 
-        Letters[CurrentLetterIndex].Activate();
+        if (_iLetterActive >= 0 && _iLetterActive < Letters.Length)
+            Letters[_iLetterActive].Activate();
 
         RefreshControls();
     }
@@ -79,7 +88,7 @@ public class LetterManager : MonoBehaviour {
     {
         ButtonLetterNext.gameObject.SetActive(CanIncrementLetter());
         ButtonLetterPrev.gameObject.SetActive(CanDecrementLetter());
-        ButtonPageNext.gameObject.SetActive(Letters[CurrentLetterIndex].CanIncrementPage());
-        ButtonPagePrev.gameObject.SetActive(Letters[CurrentLetterIndex].CanDecrementPage());
+        ButtonPageNext.gameObject.SetActive(Letters[_iLetterActive].CanIncrementPage());
+        ButtonPagePrev.gameObject.SetActive(Letters[_iLetterActive].CanDecrementPage());
     }
 }
