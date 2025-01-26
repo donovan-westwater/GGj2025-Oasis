@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.9401682, g: 0.913278, b: 0.8917122, a: 1}
+  m_IndirectSpecularColor: {r: 0.9392875, g: 0.91229934, b: 0.8904896, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -595,6 +595,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pickUp: {fileID: 8300000, guid: 7903e5ae7e8664549a3ef47e68078919, type: 3}
+  pickDown: {fileID: 8300000, guid: 0309c352f24ce487d95151353b938288, type: 3}
 --- !u!114 &111068913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,6 +802,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pickUp: {fileID: 8300000, guid: 7903e5ae7e8664549a3ef47e68078919, type: 3}
+  pickDown: {fileID: 8300000, guid: 0309c352f24ce487d95151353b938288, type: 3}
 --- !u!114 &187587014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,6 +1069,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pickUp: {fileID: 8300000, guid: 7903e5ae7e8664549a3ef47e68078919, type: 3}
+  pickDown: {fileID: 8300000, guid: 0309c352f24ce487d95151353b938288, type: 3}
 --- !u!1 &254600879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1640,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pickUp: {fileID: 8300000, guid: 7903e5ae7e8664549a3ef47e68078919, type: 3}
+  pickDown: {fileID: 8300000, guid: 0309c352f24ce487d95151353b938288, type: 3}
 --- !u!1 &375358528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2038,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8aac8011e762a424081537a7f58bf794, type: 2}
+    - target: {fileID: 4071260361988029146, guid: 87255a2fa31b7714caf94692ebf6c3ec, type: 3}
+      propertyPath: clear
+      value: 
+      objectReference: {fileID: 8300000, guid: 21a37937621c14d2781e9a5492bd6942, type: 3}
+    - target: {fileID: 4071260361988029146, guid: 87255a2fa31b7714caf94692ebf6c3ec, type: 3}
+      propertyPath: submit
+      value: 
+      objectReference: {fileID: 8300000, guid: ee394cdca577449388ef9a0ffd49172a, type: 3}
     - target: {fileID: 4071260361988029146, guid: 87255a2fa31b7714caf94692ebf6c3ec, type: 3}
       propertyPath: dateObj
       value: 
@@ -3869,7 +3885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 29.6, y: 180}
+  m_AnchoredPosition: {x: 29.599976, y: 180}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1030553217
@@ -4066,6 +4082,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pickUp: {fileID: 8300000, guid: 7903e5ae7e8664549a3ef47e68078919, type: 3}
+  pickDown: {fileID: 8300000, guid: 0309c352f24ce487d95151353b938288, type: 3}
 --- !u!1 &1091346082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,6 +4432,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  pickUp: {fileID: 8300000, guid: 7903e5ae7e8664549a3ef47e68078919, type: 3}
+  pickDown: {fileID: 8300000, guid: 0309c352f24ce487d95151353b938288, type: 3}
 --- !u!114 &1106161296
 MonoBehaviour:
   m_ObjectHideFlags: 0

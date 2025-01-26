@@ -21,9 +21,16 @@ public class GridSystem : MonoBehaviour
     GridStateObject[] rawObjectArray;
     MenuManager menuManagerRef;
     public GameObject[] unlocks;
+    public AudioClip submit;
+    public AudioClip clear;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
         date = System.DateTime.Now;
         counterDisplay = counterObj.GetComponent<TextMeshProUGUI>();
         dateDisplay = dateObj.GetComponent<TextMeshProUGUI>();
@@ -90,7 +97,8 @@ public class GridSystem : MonoBehaviour
         }
         CheckAchievements();
         submissionCount++;
-        if(menuManagerRef.lettersUnlocked < unlocks.Length)
+
+        if (menuManagerRef.lettersUnlocked < unlocks.Length)
         {
             unlocks[menuManagerRef.lettersUnlocked].SetActive(true);
         }
@@ -98,6 +106,12 @@ public class GridSystem : MonoBehaviour
         date = date.AddDays(7.0);
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
+
+        if (submit != null)
+        {
+            audioSource.PlayOneShot(submit);
+        }
+
         ClearBoard();
     }
     public void Quit()
@@ -124,6 +138,11 @@ public class GridSystem : MonoBehaviour
                 gridState[i] = -1;
                 i++;
             }
+        }
+
+        if (clear != null)
+        {
+            audioSource.PlayOneShot(clear);
         }
     }
     // Update is called once per frame
