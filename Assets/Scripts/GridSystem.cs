@@ -116,7 +116,7 @@ public class GridSystem : MonoBehaviour
             unlocks[submissionCount-1].SetActive(true);
         }
 
-        date = date.AddDays(7.0);
+        AssignDate();
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
         ClearBoard();
