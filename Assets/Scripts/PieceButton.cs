@@ -9,13 +9,20 @@ public class PieceButton : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 {
     [SerializeField]
     UnityEvent OnButtonRelease;
+    Vector2 size;
+    public void Start()
+    {
+        size = GetComponent<RectTransform>().sizeDelta;
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
         PieceManager.isReady = true;
+        GetComponent<RectTransform>().sizeDelta *= .8f;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         OnButtonRelease.Invoke();
+        GetComponent<RectTransform>().sizeDelta /= .8f;
     }
 }
