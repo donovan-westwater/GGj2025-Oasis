@@ -89,6 +89,12 @@ public class GridSystem : MonoBehaviour
         }
         return true;
     }
+    public bool IsGridEmpty()
+    {
+        ReadBoardState();
+        //Empty board state is always 0 index
+        return CompareGridStates(rawObjectArray[0], gridState);
+    }
     void CheckAchievements()
     {
         for(int i = 1; i < rawObjectArray.Length;i++)
@@ -102,9 +108,7 @@ public class GridSystem : MonoBehaviour
     }
     public void Sumbit()
     {
-        ReadBoardState();
-        //Empty board state is always 0 index
-        if (CompareGridStates(rawObjectArray[0], gridState))
+        if (IsGridEmpty())
         {
             Debug.Log("Empty!");
             return;

@@ -29,13 +29,15 @@ public class MenuManager : MonoBehaviour
     {
         hideButton.SetActive(false);
         expandButton.SetActive(true);
-        pieceMenu.transform.position -= new Vector3(100,0,0);
+        RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
+        rectTransform.anchoredPosition -= new Vector2(175, 0);
     }
     public void ExpandPanel()
     {
         hideButton.SetActive(true);
         expandButton.SetActive(false);
-        pieceMenu.transform.position += new Vector3(100, 0, 0);
+        RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
+        rectTransform.anchoredPosition += new Vector2(175, 0);
     }
 
     public void OpenMemoryMenu()
