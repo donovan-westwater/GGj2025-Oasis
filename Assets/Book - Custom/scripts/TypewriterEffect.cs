@@ -70,14 +70,16 @@ public class TypewriterEffect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (_textBox.maxVisibleCharacters != _textBox.textInfo.characterCount - 1)
+            var letterManager = GameObject.FindObjectOfType<LetterManager>();
+
+            if (_textBox.maxVisibleCharacters != _textBox.textInfo.characterCount - 1 && letterManager.IsIncrementPageDisabled())
             {
                 StopCoroutine(_typewriterCoroutine);
                 _textBox.maxVisibleCharacters = _textBox.textInfo.characterCount;
                 _readyForNewText = true;
                 CompleteTextRevealed?.Invoke();
 
-                var letterManager = GameObject.FindObjectOfType<LetterManager>();
+                
                 letterManager.CompleteCutscene();
             }
         }
