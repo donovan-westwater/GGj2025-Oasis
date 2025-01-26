@@ -12,10 +12,24 @@ public class MenuManager : MonoBehaviour
     public Camera mainCam;
     [HideInInspector]
     public int lettersUnlocked = 0;
+    public GameObject hideButton;
+    public GameObject expandButton;
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+    public void HidePanel()
+    {
+        hideButton.SetActive(false);
+        expandButton.SetActive(true);
+        pieceMenu.transform.position -= new Vector3(100,0,0);
+    }
+    public void ExpandPanel()
+    {
+        hideButton.SetActive(true);
+        expandButton.SetActive(false);
+        pieceMenu.transform.position += new Vector3(100, 0, 0);
     }
     public void ReturnToGameFromBook()
     {
