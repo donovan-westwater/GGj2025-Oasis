@@ -12,14 +12,14 @@ public class AchievementMemory : MonoBehaviour
     TextMeshProUGUI text;
     [SerializeField]
     Image imageContainer;
-    [SerializeField]
-    Image iconContainer;
+    //[SerializeField]
+    //Image iconContainer;
     Sprite tex;
     // Start is called before the first frame update
     void Start()
     {
         tex = Resources.Load<Sprite>("checkmark");
-        iconContainer.sprite = achievement.icon;
+        //iconContainer.sprite = achievement.icon;
         text.text = achievement.title;
 
     }
@@ -29,11 +29,11 @@ public class AchievementMemory : MonoBehaviour
     {
         if (achievement.completed)
         {
-            imageContainer.sprite = tex;
+            imageContainer.gameObject.SetActive(true);
         }
         else
         {
-            imageContainer.sprite = null;
+            imageContainer.gameObject.SetActive(false);
         }
     }
 }
