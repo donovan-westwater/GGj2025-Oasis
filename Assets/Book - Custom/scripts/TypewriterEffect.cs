@@ -38,10 +38,15 @@ public class TypewriterEffect : MonoBehaviour
     public static event Action<char> CharacterRevealed;
 
 
-    private void Awake()
+    private void Start()
     {
         _textBox = GetComponent<TMP_Text>();
-        _textBox.maxVisibleCharacters = 0;
+
+        var letterManager = GameObject.FindObjectOfType<LetterManager>();
+        if (letterManager.IsCutsceneActive())
+        {
+            _textBox.maxVisibleCharacters = 0;
+        }
 
         _simpleDelay = new WaitForSeconds(1 / charactersPerSecond);
         _interpunctuationDelay = new WaitForSeconds(interpunctuationDelay);
@@ -113,6 +118,14 @@ public class TypewriterEffect : MonoBehaviour
                 yield return _textboxFullEventDelay;
                 CompleteTextRevealed?.Invoke();
                 _readyForNewText = true;
+
+                // NOTE (bobbyz) This is probably bad practice but I don't really understand how unity
+                //  actions work nor do I like the idea of piping invocations through multiple layers
+                //  so just doing this 
+
+                var letterManager = GameObject.FindObjectOfType<LetterManager>();
+                letterManager.CompleteCutscene();
+
                 yield break;
             }
 

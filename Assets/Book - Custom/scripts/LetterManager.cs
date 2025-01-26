@@ -16,10 +16,17 @@ public class LetterManager : MonoBehaviour {
     public Button ButtonPageNext;
     public Button ButtonPagePrev;
 
+    public Button ButtonExit;
+
+    [Header("Debug options")]
+    public bool ForceCutsceneMode;
+
     private int _iLetterActive;
     private int MaxLetterUnlockedIndex;
 
-    void Start()
+    private bool _isCutsceneActive;
+
+    void Awake()
     {
         foreach (var letter in Letters)
             letter.Deactivate();
@@ -31,6 +38,22 @@ public class LetterManager : MonoBehaviour {
                                     6;
 
         SetCurrentLetter(MaxLetterUnlockedIndex - 1);
+
+        bool isCutscene = false; // TODO (bobbyz) Menu manager should provide this
+        if (isCutscene || ForceCutsceneMode)
+        {
+            SetCutsceneActive(true);
+        }
+    }
+
+    public bool IsCutsceneActive()
+    {
+        return _isCutsceneActive;
+    }
+
+    public void CompleteCutscene()
+    {
+        SetCutsceneActive(false);
     }
 
     public void Exit()
@@ -87,11 +110,21 @@ public class LetterManager : MonoBehaviour {
         RefreshControls();
     }
 
+    private void SetCutsceneActive(bool isCutsceneActive)
+    {
+        if (_isCutsceneActive == isCutsceneActive) return;
+
+        _isCutsceneActive = isCutsceneActive;
+
+        RefreshControls();
+    }
+
     private void RefreshControls()
     {
-        ButtonLetterNext.gameObject.SetActive(CanIncrementLetter());
-        ButtonLetterPrev.gameObject.SetActive(CanDecrementLetter());
+        ButtonLetterNext.gameObject.SetActive(CanIncrementLetter() && !_isCutsceneActive);
+        ButtonLetterPrev.gameObject.SetActive(CanDecrementLetter() && !_isCutsceneActive);
         ButtonPageNext.gameObject.SetActive(Letters[_iLetterActive].CanIncrementPage());
         ButtonPagePrev.gameObject.SetActive(Letters[_iLetterActive].CanDecrementPage());
+        ButtonExit.gameObject.SetActive(!_isCutsceneActive);
     }
 }
