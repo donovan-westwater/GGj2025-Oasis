@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.9418777, g: 0.914792, b: 0.8927587, a: 1}
+  m_IndirectSpecularColor: {r: 0.9401682, g: 0.913278, b: 0.8917122, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5069,7 +5069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -249.6, y: -40}
+  m_AnchoredPosition: {x: -180, y: -40}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1240553290
@@ -5092,10 +5092,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DATE
+  m_text: January, 94, 2099
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 10d48b7afdacd5a4f950b5d7926d6425, type: 2}
+  m_sharedMaterial: {fileID: 2469891590936762073, guid: 10d48b7afdacd5a4f950b5d7926d6425, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5135,7 +5135,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -5409,7 +5409,6 @@ MonoBehaviour:
   mainGameUI: {fileID: 1848509730}
   dome: {fileID: 712623343}
   mainCam: {fileID: 963194227}
-  lettersUnlocked: 0
   hideButton: {fileID: 2018071796}
   expandButton: {fileID: 1030553215}
 --- !u!1001 &1374801794

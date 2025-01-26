@@ -33,7 +33,7 @@ public class GridSystem : MonoBehaviour
             g.completed = false;
         }
         counterDisplay.text = submissionCount.ToString();
-        dateDisplay.text = date.ToString("MM/dd/yyy");
+        dateDisplay.text = date.ToString("MMMM d, yyy");
         menuManagerRef = this.gameObject.GetComponent<MenuManager>();
     }
     void AssignDate()
@@ -118,7 +118,7 @@ public class GridSystem : MonoBehaviour
 
         AssignDate();
         counterDisplay.text = submissionCount.ToString();
-        dateDisplay.text = date.ToString("MM/dd/yyy");
+        dateDisplay.text = date.ToString("MMMM d, yyy");
         ClearBoard();
 
         menuManagerRef.UnlockLetterAndLoadCustscene();
