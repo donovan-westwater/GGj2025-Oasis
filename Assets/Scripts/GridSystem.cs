@@ -26,6 +26,10 @@ public class GridSystem : MonoBehaviour
         counterDisplay = counterObj.GetComponent<TextMeshProUGUI>();
         dateDisplay = dateObj.GetComponent<TextMeshProUGUI>();
         rawObjectArray = Resources.LoadAll<GridStateObject>("GridStates/");
+        foreach(GridStateObject g in rawObjectArray)
+        {
+            g.completed = false;
+        }
         counterDisplay.text = submissionCount.ToString();
         dateDisplay.text = date.ToString("MM/dd/yyy");
     }
