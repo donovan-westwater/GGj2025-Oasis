@@ -24,9 +24,11 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         lettersUnlocked = 0;
-        UnlockLetterAndLoadCustscene();
+        
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = click;
         audioSource.playOnAwake = false;
+        UnlockLetterAndLoadCustscene();
     }
     private void PlayClickSound()
     {
