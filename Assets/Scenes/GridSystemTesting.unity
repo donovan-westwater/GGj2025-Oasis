@@ -5454,7 +5454,7 @@ MonoBehaviour:
   mainCam: {fileID: 963194227}
   hideButton: {fileID: 2018071796}
   expandButton: {fileID: 1030553215}
-  click: {fileID: 8300000, guid: e3c0ac91ea2f64f3e80a3029bf9630b6, type: 3}
+  click: {fileID: 0}
 --- !u!1001 &1374801794
 PrefabInstance:
   m_ObjectHideFlags: 0
