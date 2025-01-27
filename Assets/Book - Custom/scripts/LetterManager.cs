@@ -5,6 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
+using System;
 
 [ExecuteInEditMode]
 public class LetterManager : MonoBehaviour {
@@ -46,6 +47,8 @@ public class LetterManager : MonoBehaviour {
         MaxLetterUnlockedIndex = (menuManager != null) ?
                                     menuManager.lettersUnlocked :
                                     6;
+
+        MaxLetterUnlockedIndex = Math.Min(MaxLetterUnlockedIndex, Letters.Length);
 
         var startPage = (StartPage > 0) ? StartPage - 1 : MaxLetterUnlockedIndex - 1;
         SetCurrentLetter(startPage);

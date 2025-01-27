@@ -153,7 +153,12 @@ public class GridSystem : MonoBehaviour
         ClearBoard();
         isSubmitting = false;
 
-        menuManagerRef.UnlockLetterAndLoadCustscene();
+        // Ignoring flower - using hardcoded values
+
+        if (submissionCount != 2 && submissionCount < 6)
+        {
+            menuManagerRef.UnlockLetterAndLoadCustscene();
+        }
     }
     public void Quit()
     {
