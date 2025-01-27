@@ -30,8 +30,14 @@ public class LetterManager : MonoBehaviour {
     private bool _allowIncrementPage;
     private bool _isCutsceneActive;
 
+    public AudioClip flip;
+    private AudioSource audioSource;
+
     void Awake()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
         foreach (var letter in Letters)
             letter.Deactivate();
 
@@ -88,12 +94,14 @@ public class LetterManager : MonoBehaviour {
     {
         Assert.IsTrue(CanDecrementLetter());
         SetCurrentLetter(_iLetterActive - 1);
+        PlayFlipSound();
     }
 
     public void IncrementLetter ()
     {
         Assert.IsTrue(CanIncrementLetter());
         SetCurrentLetter(_iLetterActive + 1);
+        PlayFlipSound();
     }
 
     public void IncrementPage ()
@@ -104,12 +112,14 @@ public class LetterManager : MonoBehaviour {
         }
 
         Letters[_iLetterActive].IncrementPage();
+        PlayFlipSound();
         RefreshControls();
     }
 
     public void DecrementPage ()
     {
         Letters[_iLetterActive].DecrementPage();
+        PlayFlipSound();
         RefreshControls();
     }
     private bool CanDecrementLetter()
@@ -153,5 +163,13 @@ public class LetterManager : MonoBehaviour {
         ButtonPageNext.gameObject.SetActive(Letters[_iLetterActive].CanIncrementPage() && _allowIncrementPage);
         ButtonPagePrev.gameObject.SetActive(Letters[_iLetterActive].CanDecrementPage() && !_isCutsceneActive);
         ButtonExit.gameObject.SetActive(!_isCutsceneActive);
+    }
+
+    private void PlayFlipSound()
+    {
+        if (flip != null)
+        {
+            audioSource.PlayOneShot(flip);
+        }
     }
 }
