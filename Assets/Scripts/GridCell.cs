@@ -13,21 +13,25 @@ public class GridCell : MonoBehaviour
     Material mat;
     MeshRenderer renderer;
     Color defaultColor;
+    Color selectedColor;
+    Color hoveredColor;
     private void Start()
     {
         renderer = this.transform.GetComponent<MeshRenderer>();
         mat = renderer.material;
         defaultColor = mat.color;
+        selectedColor = Color.Lerp(defaultColor, Color.black, .25f);
+        hoveredColor = Color.Lerp(defaultColor, Color.white, .15f);
         if (this.transform.childCount > 0) isEmpty = false;
     }
     public void ResetColor()
     {
         if (isSelected)
         {
-            mat.color = Color.green;
+            mat.color = this.selectedColor;
         }else if (isHovered)
         {
-            mat.color = Color.red;
+            mat.color = this.hoveredColor;
         }
         else
         {
@@ -41,7 +45,7 @@ public class GridCell : MonoBehaviour
         isHovered = true;
         GridSystem.hoveredCell = this;
         Debug.Log(this.transform.parent.name + " " + this.name + " " + isHovered);
-        mat.color = Color.red;
+        mat.color = this.hoveredColor;
         renderer.material = mat;
         //Debug.Log(this.transform.parent.name+" "+this.name+" "+isSelected);
     }
@@ -52,7 +56,7 @@ public class GridCell : MonoBehaviour
         Debug.Log(this.transform.parent.name + " " + this.name + " " + isHovered);
         if (isSelected)
         {
-            mat.color = Color.green;
+            mat.color = this.selectedColor;
             renderer.material = mat;
             return;
         }
@@ -65,7 +69,7 @@ public class GridCell : MonoBehaviour
         isSelected = true;
         if (this.transform.childCount > 0)
             GridSystem.currentSelection = this.transform.GetChild(0).gameObject;
-        mat.color = Color.green;
+        mat.color = this.selectedColor;
         renderer.material = mat;
     }
     private void OnMouseUp()

@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     public Camera mainCam;
     public GameObject hideButton;
     public GameObject expandButton;
+    public AudioClip click;
+    private AudioSource audioSource;
 
     [HideInInspector]
     public int lettersUnlocked { get; private set; }
@@ -22,24 +24,40 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         lettersUnlocked = 0;
+        
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = click;
+        audioSource.playOnAwake = false;
         UnlockLetterAndLoadCustscene();
+    }
+    private void PlayClickSound()
+    {
+        if (click != null)
+        {
+            audioSource.PlayOneShot(click);
+        }
     }
 
     public void HidePanel()
     {
+        PlayClickSound();
         hideButton.SetActive(false);
         expandButton.SetActive(true);
-        pieceMenu.transform.position -= new Vector3(100,0,0);
+        RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
+        rectTransform.anchoredPosition -= new Vector2(175, 0);
     }
     public void ExpandPanel()
     {
+        PlayClickSound();
         hideButton.SetActive(true);
         expandButton.SetActive(false);
-        pieceMenu.transform.position += new Vector3(100, 0, 0);
+        RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
+        rectTransform.anchoredPosition += new Vector2(175, 0);
     }
 
     public void OpenMemoryMenu()
     {
+        PlayClickSound();
         foreach (Transform u in mainGameUI.transform)
         {
             u.gameObject.SetActive(false);
@@ -53,6 +71,7 @@ public class MenuManager : MonoBehaviour
     }
     public void CloseMemoryMenu()
     {
+        PlayClickSound();
         foreach (Transform u in mainGameUI.transform)
         {
             u.gameObject.SetActive(true);
@@ -79,6 +98,7 @@ public class MenuManager : MonoBehaviour
 
     public void UnlockLetterAndLoadCustscene()
     {
+        PlayClickSound();
         lettersUnlocked++;
         IsRunningCutscene = true;
         mainGameUI.SetActive(false);
@@ -94,6 +114,7 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToGameFromBook()
     {
+        PlayClickSound();
         IsRunningCutscene = false;
         mainGameUI.SetActive(true);
         dome.SetActive(true);
