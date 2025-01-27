@@ -15,6 +15,9 @@ public class GridCell : MonoBehaviour
     Color defaultColor;
     Color selectedColor;
     Color hoveredColor;
+    public AudioClip pickUp;
+    public AudioClip putDown;
+    private AudioSource audioSource;
     private void Start()
     {
         renderer = this.transform.GetComponent<MeshRenderer>();
@@ -23,6 +26,7 @@ public class GridCell : MonoBehaviour
         selectedColor = Color.Lerp(defaultColor, Color.black, .25f);
         hoveredColor = Color.Lerp(defaultColor, Color.white, .15f);
         if (this.transform.childCount > 0) isEmpty = false;
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
     public void ResetColor()
     {
@@ -66,6 +70,7 @@ public class GridCell : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        audioSource.PlayOneShot(pickUp);
         isSelected = true;
         if (this.transform.childCount > 0)
             GridSystem.currentSelection = this.transform.GetChild(0).gameObject;
@@ -74,6 +79,7 @@ public class GridCell : MonoBehaviour
     }
     private void OnMouseUp()
     {
+        audioSource.PlayOneShot(putDown);
         isSelected = false;
         Debug.Log(this.transform.parent.name + " " + this.name + " MouseUP");
         if (GridSystem.currentSelection != null && GridSystem.hoveredCell != null
