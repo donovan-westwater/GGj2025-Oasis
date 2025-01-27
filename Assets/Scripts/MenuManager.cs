@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     public GameObject expandButton;
     public AudioClip click;
     private AudioSource audioSource;
+    private bool isPanelExpanded = true;
 
     [HideInInspector]
     public int lettersUnlocked { get; private set; }
@@ -24,6 +25,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         lettersUnlocked = 0;
+        isPanelExpanded = true;
         
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = click;
@@ -41,18 +43,12 @@ public class MenuManager : MonoBehaviour
     public void HidePanel()
     {
         PlayClickSound();
-        hideButton.SetActive(false);
-        expandButton.SetActive(true);
-        RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
-        rectTransform.anchoredPosition -= new Vector2(175, 0);
+        isPanelExpanded = false;
     }
     public void ExpandPanel()
     {
         PlayClickSound();
-        hideButton.SetActive(true);
-        expandButton.SetActive(false);
-        RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
-        rectTransform.anchoredPosition += new Vector2(175, 0);
+        isPanelExpanded = true;
     }
 
     public void OpenMemoryMenu()
@@ -133,6 +129,23 @@ public class MenuManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Semicolon))
         {
             pieceMenu.SetActive(!pieceMenu.activeSelf);
+        }
+
+        if (!memoryMenu.activeSelf) {
+            if (isPanelExpanded) {
+                hideButton.SetActive(true);
+                expandButton.SetActive(false);
+                RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
+                rectTransform.anchoredPosition = new Vector2(100, 0);
+            } else {
+                hideButton.SetActive(false);
+                expandButton.SetActive(true);
+                RectTransform rectTransform = pieceMenu.GetComponent<RectTransform>();  
+                rectTransform.anchoredPosition = new Vector2(-75, 0);
+            }
+        } else {
+            hideButton.SetActive(false);
+            expandButton.SetActive(false);
         }
     }
 }
