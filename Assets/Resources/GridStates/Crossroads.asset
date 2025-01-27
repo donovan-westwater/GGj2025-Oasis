@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108b582ee55f7864c81e4afcff29c0bb, type: 3}
   m_Name: Crossroads
   m_EditorClassIdentifier: 
-  gridState: ffffffff0000000000000000ffffffff0000000000000000ffffffff00000000ffffffff
+  gridState: ffffffff00000000ffffffff000000000000000000000000ffffffff00000000ffffffff
   title: Crossroads
   completed: 0
   icon: {fileID: 0}
